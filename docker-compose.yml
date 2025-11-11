@@ -1,0 +1,31 @@
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: parkingSystem_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d parkingSystem_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+  adminer:
+    image: adminer:latest
+    restart: always
+    ports:
+      - "8090:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:
+  uploads:

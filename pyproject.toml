@@ -1,0 +1,36 @@
+[project]
+name = "parking_system_backend"
+version = "0.1.0"
+description = "FastAPI backend for vehicle OCR and Yolo using OpenCV and PaddleOCR"
+authors = [{ name = "Rasil Abro" }]
+requires-python = ">=3.11"
+readme = "README.md"
+
+dependencies = [
+  "fastapi",
+  "uvicorn[standard]",
+  "structlog",
+  "SQLAlchemy",
+  "psycopg[binary]",
+  "python-multipart",
+  "opencv-python-headless",
+  "paddleocr",
+  "paddlepaddle",
+  "pydantic",
+  "huggingface-hub",
+  "pydantic-core",
+]
+
+[dependency-groups]
+dev = [
+  "black",
+  "ruff",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.black]
+line-length = 100
+target-version = ["py312"]

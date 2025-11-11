@@ -1,0 +1,29 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment files
+.env
+.env.*
+
+# Tool caches
+.ruff_cache/
+.pytest_cache/
+
+# IDE / Editor
+.vscode/
+.idea/
+
+# Project-specific
+uploads/
+data/
+
+# YOLO vendor folder (use pip package instead of tracked sources)
+app/yolov10/
+
