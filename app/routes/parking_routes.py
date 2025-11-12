@@ -31,9 +31,10 @@ from app.services.video_processing import (
     detect_first_plate_and_snapshot,
     save_uploaded_temp,
 )
+from app.core.security import get_current_user
 
 
-router = APIRouter(prefix="/parking", tags=["parking"])
+router = APIRouter(prefix="/parking", tags=["parking"], dependencies=[Depends(get_current_user)])
 logger = get_logger(__name__)
 
 

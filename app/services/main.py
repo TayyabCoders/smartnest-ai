@@ -5,6 +5,7 @@ from app.core.config import settings
 from app.core.logging import configure_logging, get_logger
 from app.db.session import init_engine_and_create_tables
 from app.routes.parking_routes import router as parking_router
+from app.routes.auth_routes import router as auth_router
 
 
 def create_app() -> FastAPI:
@@ -22,6 +23,7 @@ def create_app() -> FastAPI:
     )
 
     application.include_router(parking_router)
+    application.include_router(auth_router)
 
     @application.on_event("startup")
     def on_startup() -> None:

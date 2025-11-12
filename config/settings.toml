@@ -20,4 +20,10 @@ name = "parkingSystem_db"
 pool_size = 10
 max_overflow = 10
 
+[auth]
+# Replace this in production with a strong random string from env/secret manager
+jwt_secret = "f2c4a783c99eab4e8732ada424fa9c589b5cd28e15c27175fd507c1b61ac5bc7"
+jwt_algorithm = "HS256"
+access_token_expire_minutes = 12000
+
 

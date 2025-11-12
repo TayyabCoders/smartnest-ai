@@ -19,6 +19,9 @@ class Settings:
     db_name: str
     db_pool_size: int
     db_max_overflow: int
+    jwt_secret: str
+    jwt_algorithm: str
+    jwt_access_token_expire_minutes: int
 
     @property
     def database_url(self) -> str:
@@ -39,6 +42,7 @@ def _load_settings() -> Settings:
     app_cfg = raw.get("app", {})
     log_cfg = raw.get("logging", {})
     storage_cfg = raw.get("storage", {})
+    auth_cfg = raw.get("auth", {})
     db_cfg = raw.get("database", {})
 
     upload_dir = Path(storage_cfg.get("upload_dir", "uploads"))
@@ -59,6 +63,9 @@ def _load_settings() -> Settings:
         db_name=db_cfg.get("name", "parkingSystem_db"),
         db_pool_size=int(db_cfg.get("pool_size", 10)),
         db_max_overflow=int(db_cfg.get("max_overflow", 10)),
+        jwt_secret=auth_cfg.get("jwt_secret", "CHANGE_ME_SUPER_SECRET"),
+        jwt_algorithm=auth_cfg.get("jwt_algorithm", "HS256"),
+        jwt_access_token_expire_minutes=int(auth_cfg.get("access_token_expire_minutes", 60)),
     )
 
 
