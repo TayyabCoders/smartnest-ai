@@ -14,6 +14,8 @@ class EntryRequest(BaseModel):
 
 class EntryResponse(BaseModel):
     plate_number: str
+    cnic_number: str
+    entry_image_url: HttpUrl = Field(..., description="URL to the entry image captured")
     entry_time: datetime
     status: Literal["IN"]
     message: str
@@ -27,6 +29,8 @@ class ExitRequest(BaseModel):
 class ExitResponse(BaseModel):
     plate_number: str
     entry_time: datetime
+    cnic_number: str
+    exit_image_url: HttpUrl
     exit_time: datetime
     duration_minutes: int
     fee: int

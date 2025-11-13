@@ -10,7 +10,7 @@ from typing import Optional, Tuple
 import cv2
 from ultralytics import YOLOv10
 import numpy as np
-from paddleocr import PaddleOCR
+from app.services.ocr import get_ocr
 
 from app.core.config import settings
 from app.core.logging import get_logger
@@ -19,7 +19,6 @@ _logger = get_logger(__name__)
 
 # Lazy singletons to avoid heavy reinitialization per request
 _yolo_model: Optional[YOLOv10] = None
-_ocr: Optional[PaddleOCR] = None
 
 
 def _get_yolo() -> YOLOv10:
@@ -31,18 +30,6 @@ def _get_yolo() -> YOLOv10:
     return _yolo_model
 
 
-def _get_ocr() -> PaddleOCR:
-    global _ocr
-    if _ocr is None:
-        _logger.info("video.ocr.init")
-        _ocr = PaddleOCR(
-            use_textline_orientation=True,
-            lang="en",
-            device="cpu",
-        )
-    return _ocr
-
-
 def _clean_plate_text(text: str) -> str:
     pattern = re.compile(r"[\W_]+")
     text = pattern.sub("", text)
@@ -51,7 +38,7 @@ def _clean_plate_text(text: str) -> str:
 
 
 def _extract_plate_text(image_bgr: np.ndarray) -> str:
-    ocr = _get_ocr()
+    ocr = get_ocr()
 
     # ---------- LIGHT PREPROCESSING ----------
     # Convert to grayscale for contrast improvement

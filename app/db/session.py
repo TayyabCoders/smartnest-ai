@@ -21,7 +21,8 @@ def init_engine_and_create_tables() -> None:
             max_overflow=settings.db_max_overflow,
             pool_pre_ping=True,
         )
-        from app.models import parking_records  
+        from app.models import parking_records 
+        from app.models import cnic_records  
         from app.models import user  
 
         Base.metadata.create_all(bind=engine)
