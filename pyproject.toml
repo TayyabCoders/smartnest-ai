@@ -23,6 +23,7 @@ dependencies = [
   "python-jose[cryptography]",
   "email-validator",
   "bcrypt<4",
+  "numpy==1.26.4",
 ]
 
 [dependency-groups]
