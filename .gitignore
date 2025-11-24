@@ -27,3 +27,4 @@ data/
 # YOLO vendor folder (use pip package instead of tracked sources)
 app/yolov10/
 
+read.txt
