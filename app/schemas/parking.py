@@ -4,7 +4,7 @@ from typing import List, Literal, Optional, Union
 from pydantic import BaseModel, Field, HttpUrl, constr
 
 
-PlateNumber = constr(pattern=r"^[A-Z]{3}-?\d{3}$|^[A-Z]{2}-?\d{3,4}$", to_upper=True)
+PlateNumber = constr(pattern=r"^[A-Z]{2,3}-?\d{3,4}$", to_upper=True)
 
 
 class EntryRequest(BaseModel):
