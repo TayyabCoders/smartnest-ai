@@ -16,7 +16,7 @@ def get_ocr() -> PaddleOCR:
     if _ocr_singleton is None:
         _logger.info("ocr.singleton.init")
         _ocr_singleton = PaddleOCR(
-            use_textline_orientation=True,
+            use_textline_orientation=True,                 
             lang="en",
             device="cpu",
         )
