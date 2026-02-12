@@ -8,7 +8,8 @@ from pathlib import Path
 from typing import Optional, Tuple
 import numpy as np
 import cv2
-from ultralytics import YOLOv10
+# from ultralytics import YOLOv10
+from ultralytics import YOLO
 import numpy as np
 from app.services.ocr import get_ocr
 
@@ -18,15 +19,15 @@ from app.core.logging import get_logger
 _logger = get_logger(__name__)
 
 # Lazy singletons to avoid heavy reinitialization per request
-_yolo_model: Optional[YOLOv10] = None
+_yolo_model: Optional[YOLO] = None
 
 
-def _get_yolo() -> YOLOv10:
+def _get_yolo() -> YOLO:
     global _yolo_model
     if _yolo_model is None:
         weights_path = Path("app/weights/best.pt")
         _logger.info("video.yolo.load", weights=str(weights_path))
-        _yolo_model = YOLOv10(str(weights_path))
+        _yolo_model = YOLO(str(weights_path))
     return _yolo_model
 
 
