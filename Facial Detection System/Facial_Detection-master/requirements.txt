@@ -1,0 +1,8 @@
+numpy
+opencv-python
+dlib-bin
+face-recognition-models
+face-recognition
+Pillow
+Click
+colorama

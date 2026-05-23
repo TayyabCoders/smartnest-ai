@@ -1,0 +1,12 @@
+[project]
+name = "facial-detection"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "cmake",
+    "dlib",
+    "face-recognition",
+    "opencv-python",
+]
